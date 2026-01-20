@@ -1,1 +1,4 @@
 *.bat
+add-all.bat
+git commit -m YYmmDD-Upload+引号
+push.bat
