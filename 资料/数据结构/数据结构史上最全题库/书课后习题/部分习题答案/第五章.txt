@@ -1,0 +1,39 @@
+第五章 数组与广义表
+5.1
+1.数组A的体积 6*8*6=288Byte
+2.数组A的最后一个a57地址 LOC(5,7)=1000+(5*8+7)*6=1282
+3.行储存a14第一个字节地址 LOC(1,4)=1000+(1*8+4)*6=1072
+4.列储存a47的一个字节的地址 LOC(4,7)=1000+(7*6+4)*6=1276
+
+
+5.8
+i为奇数时，k=i+j-2
+j为偶数时，k=i+j-1
+
+5.10
+(1) GetHead[(p,h,w)]= p
+(2) GetTail[(b,k,p,h)]= (h)
+(3) GetHead[((a,b),(c,d))]= (a,b)
+(4) GetTail[((a,b),(c,d))]= ((c,d))
+(5) GetHead[GetTail[((a,b),(c,d))]]= GetHead[((c,d))]= (c,d)
+(6) GetTail[GetHead[((a,b),(c,d))] ]= GetTail[(a,b)]= (b)
+(7) GetHead[GetTail[GetHead[((a,b),(c,d))]]]= GetHead[GetTail[(a,b)]]=GetHead[(b)]= b
+(8) GetTail[GetHead[GetTail[((a,b),(c,d))]]]= GetTail[GetHead(c,d)]]= GetTail[(c)]= c
+
+5.16
+#include "stdio.h"
+int add(int a,int b)				//定义递归函数
+{
+	if(b==0) 
+		return a;			//实现返回值
+	else
+		return add(++a,--b);		//a增加，b减少，把b的值给a
+}	
+
+void main()
+{
+	int a,b;
+	printf("请输入a,b两个数的值");
+	scanf("%d%d",&a,&b);
+	printf("%d",add(a,b));			//调用递归函数
+}

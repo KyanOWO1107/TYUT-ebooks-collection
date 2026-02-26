@@ -1,0 +1,126 @@
+3.1
+(1)进站序列是123
+出站是321，123,231,213,132
+(2)如果进站序列是123456
+不能得到435612能得135426
+因为4356出站表示12在站中，1不可能在2之前
+
+3.9
+void digui(int n)
+{
+	int i;
+	i=n
+	if(i<=1) return error;
+	else 
+	{
+		printf("%d".&i);
+		digui(i--);	
+	}
+
+
+3.10
+void test(int &sum)
+{	int x;
+	int sum;
+	scanf("%d",&x);
+	if(x==0) sum=0;
+	else
+	{
+		while(x>0)
+		sum=sum+x;
+		x--;
+	}
+}	
+
+3.24#include<stdio.h>
+
+int recursion(int m,int n)			//递归函数的定义
+{	
+	
+	int temp=0;
+	if(m>0)					//递归函数的定义	
+	{
+		
+		m=m-1;				//修改递归函数的值
+		temp=n;				//修改递归函数的值
+		n=n*2;				//修改递归函数的值
+		return recursion(m,n)+temp;		//实现递归
+	}
+	else return 0;
+
+}
+
+void main()
+{
+	printf ("请输入M与N");
+	int m,n;
+	scanf("%d%d",&m,&n);			//输入函数的m,n值
+	printf("%d",recursion(m,n));		//输出函数值
+	
+	
+}
+0  64
+1  32
+2  16
+3   8
+4   4
+5   2
+
+
+
+3.28
+#define MAXQSIZE 100									//分配空间为100的一个内存空间
+typedef struct 										//定义一个循环队列
+{
+	QElemType *base;
+	int front;
+	int rear;
+}SqQueue;
+Status InitQueue(SqQueue &Q)								//构建初始化一个队列
+{
+	Q.base=(QElemType*)malloc(MAXQSIZE *sizeof(QElemType));
+	if(!q.base)exit(OVERFLOW);							//储存分配失败
+	q.front=q.rear=0								//指针赋初值
+	return OK;
+}
+status EnQueue(SqQueue&Q,QElemType& e)							//插入队列
+
+{
+	if((Q.rear+1)%MAXQSIZE==Q.front)return ERROR;					//判断队列是否满
+	Q.base[Q.rear]=e;								//赋值出去的内容
+	Q.rear=(Q.rear+1)%MAXQSIZE;							//指针赋值下一个
+	return OK;
+}
+Status DeQueue(SqQueue& Q,QElemType& e)						//出队列
+{
+	if(Q.front==Q.rear)return ERROR;						//判断是否是空队列
+	e=Q.base[Q.front];										//头结点赋值与E
+	Q.front=(Q.front+1)%MAXQSIZE;							//头结点+1
+	return OK;
+}
+
+3.31
+typedef struct 
+
+Status SymmetryString (char* p)  
+{
+	Queue q;     				//定义队列指针
+	if(!InitQueue(q)) return 0;		//判断是否为空站
+	Stack s;				//定义站指针
+	InitStack(s);				//调用构造站函数
+	ElemType e1,e2;				//定义指针e1 e2
+	while(*p)					//进站
+	{
+		Push(s,*p);				//输入
+		EnQueue(q,*p);			//数据插入队尾
+		p++;					//指针+1
+	}
+	while(!StackEmpty(s))			//出站
+	{
+		Pop(s,e1);				
+		DeQueue(q,e2);				//数据出站
+		if(e1!=e2) return FALSE;		//判断字符串是否回文
+	}
+return OK;
+}
+

@@ -1,0 +1,118 @@
+1.16
+#include "stdio.h"
+void main(){
+	printf("输入三个整数");
+	int x,y,z;
+	int temp;
+	scanf("%d,%d,%d",&x,&y,&z);
+	if(x<y)
+		{temp=x;
+		x=y;
+		y=temp;}
+	if(x<z)
+		{temp=x;
+		x=z;
+		z=temp;}
+	if(y<z)
+		{temp=y;
+		y=z;
+		z=temp;}
+	printf("%d,%d,%d",x,y,z);
+}
+
+1.17
+
+//K阶斐波那契数列的前K-1项均为0,第k项为1,以后的每一项都是前K项的和
+
+
+int Fibonacci(int k,int m)
+{
+	if(k<1) exit (error);                               //判断K阶是否符合，不符合退出
+	int *p,x;
+	int sum=1;
+	p=new int[k+1];
+	if(!p) exit (error);
+	int i;
+	
+	if(i<k-1)							//K阶斐波那契数列的前K-1项均为0					
+		
+		for(i=0;i<k+1;i++)              
+		
+		p[i]=0;
+	else if (i=k) p[i]=1;						//第k项为1
+	else				                                  //以后的每一项都是前K项的和
+		 
+		for( i=k+1;i<=m;i++)                                             //分别求从K项到m项的值
+		{
+		sum+=p[i];     
+		p[i]=sum;
+		}			
+
+}
+
+1.18
+
+typedef enum{A,B,C,D,E} SchoolName;             //定义学校名字	
+
+typedef enum{Female,Male} SexType;              //定义男女
+
+typedef struct{		                            //项目
+	
+	char event[10];
+	
+	SexType sex;
+	
+	SchoolName school;
+	
+	float score;
+
+}Component;
+
+typedef struct{
+	
+	float MaleSum;                         //男团总分
+	
+	float FemaleSum;                       //女团总分
+	
+	float TotalSum;                        //团体总分
+
+}Sum;
+
+
+Sum SumScore(SchoolName sn,Component a[],int n)
+
+{
+	Sum temp;                                          //赋初值
+	
+	temp.MaleSum=0;
+	
+	temp.FemaleSum=0;
+	
+	temp.TotalSum=0;
+	
+	int i;
+	
+	for(i=0;i<n;i++)                                   //循环加总分
+
+	{                                              
+		
+		if(a[i].school==sn)			//判断是否该学校的
+		
+		{
+
+		     if(a[i].sex==Male)                      //判断男
+				
+			  temp.MaleSum+=a[i].score;
+			
+		     if(a[i].sex==Female)		    //判断女
+				
+			  temp.FemaleSum+=a[i].score;
+		
+		}
+	
+	
+	}
+	
+	temp.TotalSum=temp.MaleSum+temp.FemaleSum;      //总成绩
+	
+	return temp;

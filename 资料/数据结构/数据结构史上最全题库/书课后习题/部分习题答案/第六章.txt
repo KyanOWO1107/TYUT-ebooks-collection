@@ -1,0 +1,333 @@
+6.3
+具有3个节点的树
+   A      A
+  /\     /
+ B  C   B
+       /
+      C
+具有3个节点的二叉树
+   A       A    A      A       A
+  /\      /    /\     /\       /\
+ B  C    B    B         B        B
+	/      \        /\       /\
+       C         C      C          C
+
+6.5
+总节点数N=1+1*n1+2*n2+3*n3+…………+k*nk
+叶子节点M=N-(n1+n2+…………+nk)
+
+
+6.13
+1  1  1
+0  0  0
+1  空 1
+0  空 0
+
+
+6.14
+（a）只含右子树的二叉树
+（b）只含左子树的二叉树
+（c）只含根节点的二叉树
+
+
+6.19
+A       A       A 	  A
+       /       /	 /
+      B       B		B
+     /         \	 \
+    C   	C	  C
+			  /\
+		         E  D
+			/\
+		       I  F
+		        \  \
+			 J  G
+			    /\
+		       	   K  H
+
+
+6.20
+                  1
+                 /\
+		2  9
+	       /   /\
+	      3  10  11
+	       \      \
+		4      12
+		 \     /
+		  5   13  
+		 /    /\
+		6    15 14
+	       / \
+	      8   7
+
+
+(1)先序前驱线索化：1 2 3 4 5 6 8 7 9 10 11 12 13 15 14
+(2)中序全线索化：3 4 8 6 7 5 2 1 10 9 11 15 13 14 12
+(3)后序后继线索化：8 7 6 5 4 3 2 10 15 14 13 12 11 9 1
+    	            1
+                 /   \
+	   ----	2   - 9
+	  |    /    | /\
+	  ——3     10  11
+	     | \         \
+	     ---4        12
+		 \      /
+		  5   -13  
+		 /   | /\
+	     --	6    - 15-14
+	    |  / \
+	    --8   7
+
+
+
+		       1
+                       |
+                  /    |    \
+		 2 ----      9
+	     /     |	|   / |\
+	   3  	   |    -- 10- -11
+	   | \     |	       |  \
+	   -- 4    |	       |   12---  
+	       \   |           |   /   |
+	       -5 - -|         |  13   |
+	      | /    |         |  /|\  |
+	      | 6    |         -15-|-14-
+	      | /|\  |
+	     -8-|- 7-|
+
+
+
+
+                     1
+                 /      \
+		2        9
+	       / |     /   \
+	      3   ---- 10    11--
+	       \       |      \  |
+		4---|  |      12-
+		 \  |  |   /
+		  5-   |  13--|
+		 /     |  /\  |
+		6--|   -15-14-
+	       / \ |
+	      8---7-
+
+
+
+
+
+6.21
+
+ 
+A    A       A B C      A C        A      C    F     I
+     |      		|         / \		     |
+     B     		B	  B  E		     M		
+     |				 /|\
+     C				D H K
+			       /  /
+			       G  J
+
+
+ 
+6.27
+
+	 E
+       /  \
+       B    F
+      /\    \
+     A  D    H
+	/    /\
+	C    G I
+	        \
+	         K
+	        /
+	        J
+
+
+6.28
+
+	    A
+	  /   \
+	  B     I	
+	 / \   /  \
+	C  G   H   J
+       /   \   \    \
+      D     E  F     K
+
+6.41
+#include "stdafx.h"
+#include "stdlib.h"
+typedef int Status;
+typedef int ElemType;
+typedef char TElemType;
+TElemType ch;
+#define null 0 
+#define overflow 0
+#define ok 1
+typedef struct  BiTNode				//二叉树储存表示
+{
+	 TElemType data;
+	struct BiTNode *lchild,*rchild;
+}BiTNode,*BiTree;
+
+Status CreaBiTree(BiTree &T)			//初始化一个二叉树
+{
+	 ch=getchar();
+	if(ch==' ')T=null;
+	else{
+		 if(!(T=(BiTNode *)malloc(sizeof(BiTNode))))return(overflow);
+	   Status PreOrderTraverse(BiTree T,Status(*visit)(TElemType e));
+	   T->data=ch;
+	   CreaBiTree(T->lchild);
+	   CreaBiTree(T->rchild);
+	}
+	return ok;
+}
+void PreOrderTraverse(BiTree T){			//先序输出一个二叉树
+     if(T!=NULL){
+         printf("%c ",T->data);
+         PreOrderTraverse(T->lchild);
+         PreOrderTraverse(T->rchild);           
+     }     
+}
+Status PONodeK(BiTree& T,i)				//计算K位置的结点是哪一个
+{  char e;
+   
+   int k;
+   scanf_s("%d",&k);
+	if(T){
+		i++;
+			if(i==k) e=T->data;
+			else{
+				PONodeK(T->lchild,i);
+				PONodeK(T->rchild,i);
+				}
+	
+			}
+	printf("%c",&e);
+	return ok;
+
+}
+
+	void main()				//主函数
+{
+	BiTree s;
+	printf("输入字符串,使用空格代表空\n");
+	CreaBiTree(s); 
+	printf("先序输出:\n");
+	PreOrderTraverse(s);
+	printf("请输入K\n");
+	PONodeK(s,1);
+	getchar();
+
+
+
+}
+
+
+6.42
+
+
+#include "stdafx.h"
+#include "stdafx.h"
+#include "stdlib.h"
+typedef int Status;
+typedef int ElemType;
+typedef char TElemType;
+TElemType ch;
+#define null 0 
+#define overflow 0
+#define ok 1
+typedef struct  BiTNode     				//二叉树储存表示
+{
+	 TElemType data;
+	struct BiTNode *lchild,*rchild;
+}BiTNode,*BiTree;
+
+Status CreaBiTree(BiTree &T)				//初始化二叉树
+{
+	 ch=getchar();
+	if(ch==' ')T=null;
+	else{
+		 if(!(T=(BiTNode *)malloc(sizeof(BiTNode))))return(overflow);
+	   Status PreOrderTraverse(BiTree T,Status(*visit)(TElemType e));
+	   T->data=ch;
+	   CreaBiTree(T->lchild);
+	   CreaBiTree(T->rchild);
+	}
+	return ok;
+}
+void PreOrderTraverse(BiTree T){			//先序输出二叉树
+     if(T!=NULL){
+         printf("%c ",T->data);
+         PreOrderTraverse(T->lchild);
+         PreOrderTraverse(T->rchild);           
+     }     
+}
+Status POLeafNodeNum(int i,BiTree T)			//计算叶子节点数
+{
+	
+		if(!T->lchild && !T->rchild) {
+			i++;
+		POLeafNodeNum(i,T->lchild);
+		POLeafNodeNum(i,T->rchild);
+		}
+	printf("%d",i);
+	return ok;
+
+}
+
+
+	void main()					//主函数
+{
+	BiTree s;
+	printf("输入字符串,使用空格代表空\n");
+	CreaBiTree(s); 
+	printf("先序输出:\n");
+	PreOrderTraverse(s);
+	POLeafNodeNum(0,s);
+	getchar();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,119 @@
+2.6
+a 4 1
+b 7 8 1 4
+c 5
+d 9 1 6
+
+
+2.7
+a 11 3 14 
+b 10 12 8 3 14
+c 10 12 7 3 14
+d 12 11 3 14
+e 9 11 3 14
+
+2.9
+(1）将单链表的头结点改为尾结点
+（2）将一根单链表分为2个pa pb单链表
+
+
+2.11
+Status ListInsert(SqList &va,ElemType x){             //在非递减的顺序表va中插入元素x并使其仍成为顺序表的算法             int i;
+if(va.length>=va.listsize)return(OVERFLOW);            //判断顺序表长度是否超过所分配的空间
+for(i=va.length;i>0,x<va.elem[i-1];i--)
+	va.elem[i]=va.elem[i-1];                       //将上一个值赋值给下一个，并重复到i=0
+va.elem[i]=x;
+va.length++;
+return OK;
+}
+
+
+2.14 
+
+//测量单链表的长度
+int ListLength_L(LinkList &L)
+{
+int i=0;							
+p=L->next;                			//p指针指向第一个结点
+while(p){
+	p=p->next;				//指向下一个
+	i++;					//计数
+	}
+return i;
+}
+
+
+
+2.21
+// 顺序表的逆置
+Status ListOpposite_Sq(SqList &L)
+{
+int i;
+ElemType temp;					//临时储存变量
+for(i=0;i<L.length/2;i++)			//顺序表一半相互对调实现逆置
+	{
+	temp=L.elem[i];				
+	L.elem[i]=L.elem[L.length-1-i];
+	L.elem[L.length-1-i]=temp;
+	}	
+return OK;
+}
+
+
+
+2.22
+//单链表逆置
+Status ListOpposite_L(LinkList &L)
+{
+LinkList p,q;
+p=L;					//p指向头结点
+p=p->next;				//指向第一个结点
+L->next=NULL;				//头结点地址为空
+while(p){				//循环将下一个结点地址指向上一个
+	q=p;
+	p=p->next;
+	q->next=L->next;
+	L->next=q;			//使用头结点地址临时储存上一个结点的数据地址
+	}
+return OK;
+}
+
+
+2.24
+
+// 将合并逆置后的结果放在C表中，并删除B表
+Status ListMergeOppose_L(LinkList &A,LinkList &B,LinkList &C)
+{
+LinkList pa,pb,temp;
+pa=A;
+pb=B;
+pa=pa->next;
+pb=pb->next;
+A->next=NULL;
+C=A;
+//将B链表加到A链表上并保持递减
+while(pb->next=NULL)		//判断pb指针是否到尾结点
+{
+	pb=pb->next;
+		while(pb->data<=pa->data)	//pb和pa的大小
+		{		
+			pa=pa->next;
+		}
+	temp=pa->next;				//将B链表加入A链表
+	pa->next=pb;
+	pb->next=temp;
+}
+pb=B;
+free(pb);
+LinkList p,q;		//单链表逆置
+p=A;					
+p=p->next;				
+A->next=NULL;				
+while(p){				
+	q=p;
+	p=p->next;
+	q->next=A->next;
+	A->next=q;			
+	}
+return OK;
+}
