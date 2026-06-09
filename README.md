@@ -4,7 +4,7 @@
 ## 出于部分原因考量，原仓库已经隐藏，资源保持更新中，如果您需要资源可以直接通过邮箱或其他联系方式联系我获取，当然你也可以通过KyanetWorkStation提交申请（WorkTask），说明需求并提供可用的联系方式，我会尽快与您联系，感谢大家的支持和理解Thanks♪(･ω･)ﾉ
 ## Due to some reasons, the original repository has been hidden and resources are being updated. If you need resources, you can contact me directly through email or other contact information. Of course, you can also submit a WorkTask through KyanetWorkStation, explaining your requirements and providing available contact information. I will contact you as soon as possible. Thank you for your support and understanding.
 
-- [[Kyanetwork | KyanetWorkStaion](https://blog.kyanet.work/)]
+- [[Kyanetwork | KyanetWorkStaion](https://kws.kyanet.work/)]
 
 ## 简述/Simple Description
 
